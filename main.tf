@@ -21,3 +21,10 @@ module "app_svc_plan" {
   sku_name = var.plan_sku
 }
 
+module "app_svc" {
+  source = "./modules/app_service"
+  name = var.svc_name
+  resource_group_name = module.rg1.name
+  location = module.rg1.location
+  service_plan_id = module.app_svc_plan.id
+}

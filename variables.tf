@@ -25,4 +25,7 @@ variable "plan_sku" {
   type = string
 }
 
-# 
+# App Service
+variable "svc_name" {
+  type = string
+}

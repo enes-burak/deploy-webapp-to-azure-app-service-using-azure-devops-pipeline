@@ -38,27 +38,3 @@ stages:
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: true
 
-    - task: PublishBuildArtifacts@1
-      condition: succeeded()
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: '$(tag)'
-        publishLocation: 'Container'
-- stage: Deploy
-  jobs:
-  - deployment: DeployToAzure
-    pool: $(vmImageName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            inputs:
-              azureSubscription: 'Azure subscription 1(980c8982-757f-407e-bc5e-64d11d10ebe1)'
-              appType: 'webApp'
-              appName: 'buraktestapp1'
-              deployToSlotOrASE: true
-              resourceGroupName: 'rg1'
-              slotName: 'production'
-              package: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
-              deploymentMethod: 'auto'

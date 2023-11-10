@@ -5,11 +5,6 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '73c5936f-f7ef-4b24-b1e4-a5bc1fa286ae'
-  imageRepository: 'angularimage'
-  containerRegistry: 'burakacr1.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
